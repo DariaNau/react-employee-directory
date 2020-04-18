@@ -1,5 +1,5 @@
 import React from "react";
-import Img from "../Thumbnail/index"
+import Img from "../Img/index"
 
 function SearchResults(props) {
   console.log(props);
@@ -9,10 +9,10 @@ function SearchResults(props) {
         <thead>
           <tr>
           <th>Avatar</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>DOB</th>
+            <th className="filter" id="filterName">Name</th>
+            <th className="filter" id="filterEmail">Email</th>
+            <th className="filter" id="filterPhone">Phone</th>
+            <th className="filter" id="filterDOB">DOB</th>
           </tr>
         </thead>
         <tbody>

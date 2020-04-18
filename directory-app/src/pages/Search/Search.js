@@ -89,6 +89,23 @@ class Search extends Component {
     });
   };
 
+  handleFilterClick = event => {
+    // Get the id of the clicked button
+    const filterType = event.target.attributes.getNamedItem("id").value;
+    if (filterType === "filterName"){
+      this.state.results.sort();
+    }
+    // else if (filterType === "filterEmail"){
+
+    // }
+    // else if (filterType === "filterPhone"){
+
+    // }
+    // else (filterType === "filterDOB"){
+
+    // }
+  };
+
 // 4 - RENDER PAGE WITH NECESSARY COMPONENTS AND UPDATED STATE
 
   render() {
@@ -98,6 +115,7 @@ class Search extends Component {
         <SearchForm
           handleInputChange={this.handleInputChange}
           search={this.state.search}
+          onClick={this.handleFilterClick}
         />
         <div className="row">
           <SearchResults results={this.state.filtered} />
