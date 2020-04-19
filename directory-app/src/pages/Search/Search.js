@@ -1,14 +1,16 @@
 import API from "../../utils/API";
 import React, { Component } from "react";
 import SearchForm from "../../components/SearchForm/index";
-import SearchResults from "../../components/SearchResults/index"
-import Date from "../../utils/Date"
+import SearchResults from "../../components/SearchResults/index";
 import formatDate from "../../utils/Date";
+import Container from "../../components/Container/index";
+import Row from "../../components/Row/index";
+import Col from "../../components/Col/index";
 
 // 1 - SET STATE OBJECT WITH ALL NEEDED VARIABLES
 class Search extends Component {
-
   state = {
+    order: "ASC",
     // an empty string for search input to be stored at
     search: "",
     // an empty array for results from API call to be stored at on page load
@@ -17,7 +19,7 @@ class Search extends Component {
     filtered: [],
   };
 
-// 2 - ON PAGE LOAD RUN THIS FUNCTION
+  // 2 - ON PAGE LOAD RUN THIS FUNCTION
 
   componentDidMount() {
     API.getRandomUser().then((res) => {
@@ -29,7 +31,7 @@ class Search extends Component {
         thumbnail: apiData.picture.large,
         email: apiData.email,
         phone: apiData.phone,
-        dob: formatDate(apiData.dob.date)
+        dob: formatDate(apiData.dob.date),
       }));
       this.setState({
         results: mappedRes,
@@ -38,14 +40,14 @@ class Search extends Component {
     });
   }
 
-// 3- IF THERE IS AN INPUT CHANGE RUN THIS FUNCTION
+  // 3- IF THERE IS AN INPUT CHANGE RUN THIS FUNCTION
 
   handleInputChange = ({ target }) => {
     //Getting the value and name of the input which triggered the change
     // by deconstructing the object: const name = event.target.name and const value = event.target.value;
     const { name, value } = target;
     // 1st update the input's state, then run filterSearch function to update results right when the input is being changed
-    this.setState({[name]: value,},this.filterSearch);
+    this.setState({ [name]: value }, this.filterSearch);
   };
 
   filterSearch = () => {
@@ -89,38 +91,37 @@ class Search extends Component {
     });
   };
 
-  handleFilterClick = event => {
-    // Get the id of the clicked button
-    const filterType = event.target.attributes.getNamedItem("id").value;
-    if (filterType === "filterName"){
-      this.state.results.sort();
+  sortBy = (key) => {
+    let sorted;
+    if (this.state.order === "ASC") {
+      sorted = this.state.filtered.sort((a, b) => (a[key] > b[key] ? 1 : -1));
+    } else {
+      sorted = this.state.filtered.sort((a, b) => (a[key] < b[key] ? 1 : -1));
     }
-    // else if (filterType === "filterEmail"){
 
-    // }
-    // else if (filterType === "filterPhone"){
-
-    // }
-    // else (filterType === "filterDOB"){
-
-    // }
+    this.setState({
+      filtered: sorted,
+      order: this.state.order === "ASC" ? "DESC" : "ASC",
+    });
   };
 
-// 4 - RENDER PAGE WITH NECESSARY COMPONENTS AND UPDATED STATE
+  // 4 - RENDER PAGE WITH NECESSARY COMPONENTS AND UPDATED STATE
 
   render() {
+    // console.log(["cat", "dog"]);
+    // console.log({ name: "ben", job: "tutor" });
     return (
-      <div className="container">
-        <h1> Search </h1>
-        <SearchForm
-          handleInputChange={this.handleInputChange}
-          search={this.state.search}
-          onClick={this.handleFilterClick}
-        />
-        <div className="row">
-          <SearchResults results={this.state.filtered} />
-        </div>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <SearchForm
+              handleInputChange={this.handleInputChange}
+              search={this.state.search}
+            />
+          <SearchResults results={this.state.filtered} sortBy={this.sortBy} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

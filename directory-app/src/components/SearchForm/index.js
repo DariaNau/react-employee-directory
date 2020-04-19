@@ -1,4 +1,5 @@
 import React from "react";
+import Row from "../Row/index";
 
 function Search(props) {
   return (
