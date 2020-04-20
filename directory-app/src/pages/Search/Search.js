@@ -6,6 +6,7 @@ import formatDate from "../../utils/Date";
 import Container from "../../components/Container/index";
 import Row from "../../components/Row/index";
 import Col from "../../components/Col/index";
+import Jumbotron from "../../components/Jumbotron.jsx";
 
 // 1 - SET STATE OBJECT WITH ALL NEEDED VARIABLES
 class Search extends Component {
@@ -51,30 +52,10 @@ class Search extends Component {
   };
 
   filterSearch = () => {
-    // Mutable vs Immutable Data Types
-    // Mutable:
-
-    // object
-    // array
-    // function
-    // Immutable:
-
-    // All primitives are immutable.
-
-    // string
-    // number
-    // boolean
-    // null
-    // undefined
-    // symbol
-
     // var text = ["dog"]
     // var other = [...text]
     // other.push("cat")
     // console.log(other, text)
-
-    // ????? ----------------------------if no results matched - message
-
     this.setState({
       filtered: this.state.results.filter((searchRes) => {
         // since we don't want our img urls to be included in search we can delete that key from our searchRes array
@@ -112,13 +93,14 @@ class Search extends Component {
     // console.log({ name: "ben", job: "tutor" });
     return (
       <Container>
+        <Jumbotron />
         <Row>
           <Col>
             <SearchForm
               handleInputChange={this.handleInputChange}
               search={this.state.search}
             />
-          <SearchResults results={this.state.filtered} sortBy={this.sortBy} />
+            <SearchResults results={this.state.filtered} sortBy={this.sortBy} />
           </Col>
         </Row>
       </Container>
