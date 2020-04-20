@@ -11,7 +11,8 @@ The user is be able to:
 
 ## Installation
 
-Please visit the deployed project at: https://darianau.github.io/ 
+Please visit the deployed project at: https://darianau.github.io/react-employee-directory/  
+
 ![First React App](directory-app/public/directory-screen.png)
 
 ## User Story
