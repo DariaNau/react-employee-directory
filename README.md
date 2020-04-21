@@ -10,7 +10,7 @@ The user is be able to:
 
 ## Installation
 
-Please visit the deployed project at: https://darianau.github.io/react-employee-directory/  
+Please visit the deployed project at: https://young-sierra-35107.herokuapp.com/  
 
 ![First React App](directory-app/public/directory-screen.png)
 
