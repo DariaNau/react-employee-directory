@@ -12,7 +12,7 @@ The user is be able to:
 
 Please visit the deployed project at: https://young-sierra-35107.herokuapp.com/  
 
-![First React App](directory-app/public/directory-screen.png)
+![First React App](client/public/directory-screen.png)
 
 ## User Story
 
