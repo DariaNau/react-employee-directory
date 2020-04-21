@@ -1,0 +1,26 @@
+{
+  "name": "react-employee-directory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "cd directory-app && npm run build",
+    "heroku-postbuild": "npm run build",
+    "install": "cd directory-app && npm run install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DariaNau/react-employee-directory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DariaNau/react-employee-directory/issues"
+  },
+  "homepage": "https://github.com/DariaNau/react-employee-directory#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
